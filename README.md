@@ -1,70 +1,86 @@
-# Getting Started with Create React App
+# AsyncStorage Movie Search App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Objective
+Create a Movie Search mobile app using a public API in React Native for Android or iOS.
 
-## Available Scripts
+## Features
+- Search for movies by title using the OMDb API.
+- Display searched movies in a list view with name and poster.
+- View detailed movie information on a separate screen.
+- Save favorite movies using AsyncStorage.
+- Load more movies at the bottom of the list.
 
-In the project directory, you can run:
+## Prerequisites
+- Node.js and npm installed on your machine.
+- React Native CLI installed globally.
+- Android Studio and/or Xcode installed for Android/iOS development.
+- An OMDb API key. Obtain one from [OMDb API](https://www.omdbapi.com/apikey.aspx).
 
-### `npm start`
+## Setup Instructions
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+1. **Clone the Repository:**
+   ```bash
+   git clone https://github.com/yourusername/asyncstorage.git
+   cd asyncstorage
+   ```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+2. **Install Dependencies:**
+   ```bash
+   npm install
+   ```
 
-### `npm test`
+3. **Configure API Key:**
+   - Open `HomeScreen.js` located in the `/screens` directory.
+   - Replace `'your_omdb_api_key'` with your actual OMDb API key.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+4. **Run the App:**
+   - **For Android:**
+     - Start an Android emulator or connect an Android device.
+     - Run the following command:
+       ```bash
+       npx react-native run-android
+       ```
+   - **For iOS:**
+     - Open the `ios` folder in Xcode and set up the development team.
+     - Run the following command:
+       ```bash
+       npx react-native run-ios
+       ```
 
-### `npm run build`
+## Project Structure
+```
+asyncstorage/
+├── android/            # Android native code
+├── ios/                # iOS native code
+├── node_modules/       # Dependencies
+├── screens/            # App screens
+│   ├── HomeScreen.js   # Main search screen
+│   ├── DetailScreen.js # Movie details screen
+│   └── FavoritesScreen.js # Saved favorites screen
+├── components/         # Reusable components
+├── App.js              # Main app component
+├── package.json        # Project dependencies
+└── README.md           # Project documentation
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Troubleshooting
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Common Issues:
+1. **Build Failures:**
+   - Ensure you have the latest version of React Native CLI.
+   - Try cleaning the build with `cd android && ./gradlew clean` for Android.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+2. **API Key Issues:**
+   - Verify your OMDb API key is active and correctly entered.
+   - Check network connectivity.
 
-### `npm run eject`
+3. **AsyncStorage Errors:**
+   - Make sure you've installed `@react-native-async-storage/async-storage` package.
+   - Import it correctly: `import AsyncStorage from '@react-native-async-storage/async-storage';`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Additional Information
+- Ensure your development environment is set up correctly by following the [React Native Environment Setup](https://reactnative.dev/docs/environment-setup) guide.
+- For any issues or contributions, please open an issue or submit a pull request on the GitHub repository.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## License
+This project is licensed under the MIT License.

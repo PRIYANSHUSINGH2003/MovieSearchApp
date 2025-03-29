@@ -1,24 +1,43 @@
-import logo from './logo.svg';
+import React from 'react';
+import { Provider as PaperProvider } from 'react-native-paper';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import HomeScreen from './screens/HomeScreen';
+import MovieDetailsScreen from './screens/MovieDetailsScreen';
 import './App.css';
+
+const Stack = createStackNavigator();
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <PaperProvider>
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen 
+            name="Home" 
+            component={HomeScreen} 
+            options={{ 
+              title: 'Movie Search',
+              headerStyle: {
+                backgroundColor: '#6200ee',
+              },
+              headerTintColor: '#fff',
+            }} 
+          />
+          <Stack.Screen 
+            name="MovieDetails" 
+            component={MovieDetailsScreen} 
+            options={{ 
+              title: 'Movie Details',
+              headerStyle: {
+                backgroundColor: '#6200ee',
+              },
+              headerTintColor: '#fff',
+            }} 
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </PaperProvider>
   );
 }
 
