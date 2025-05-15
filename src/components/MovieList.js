@@ -1,13 +1,18 @@
 import React from 'react';
-import { FlatList, StyleSheet, View } from 'react-native';
+import { FlatList, StyleSheet, View, Dimensions } from 'react-native';
 import { Card, Title, Paragraph } from 'react-native-paper';
+
+const windowWidth = Dimensions.get('window').width;
+const cardWidth = (windowWidth - 60) / 4; // Four cards per row with padding
 
 const MovieList = ({ movies, onSelectMovie }) => {
   return (
     <FlatList
       data={movies}
       keyExtractor={(item) => item.imdbID}
+      numColumns={4}
       contentContainerStyle={styles.listContainer}
+      columnWrapperStyle={styles.row}
       renderItem={({ item }) => (
         <Card
           onPress={() => onSelectMovie(item)}
@@ -30,30 +35,40 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     paddingBottom: 20,
   },
+  row: {
+    justifyContent: 'space-between',
+    marginBottom: 0,
+  },
   card: {
-    marginVertical: 10,
-    borderRadius: 16,
+    marginVertical: 8,
+    width: cardWidth,
+    borderRadius: 12,
     overflow: 'hidden',
-    elevation: 5,
+    elevation: 3,
     backgroundColor: '#ffffff',
+    marginLeft: 4,
+    marginRight: 4,
   },
   cardCover: {
-    height: 220,
+    height: 150,
     resizeMode: 'cover',
   },
   cardContent: {
-    paddingTop: 12,
-    paddingBottom: 16,
+    paddingTop: 8,
+    paddingBottom: 10,
+    paddingHorizontal: 8,
   },
   title: {
-    fontSize: 18,
+    fontSize: 14,
     fontWeight: 'bold',
     color: '#222',
+    marginBottom: 2,
+    lineHeight: 18,
   },
   subtitle: {
-    fontSize: 14,
+    fontSize: 12,
     color: '#666',
-    marginTop: 4,
+    marginTop: 2,
   },
 });
 

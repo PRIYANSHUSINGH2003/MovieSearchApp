@@ -1,23 +1,26 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet, ScrollView, Dimensions } from 'react-native';
+import { ScrollView, View, Text, Image, StyleSheet, Dimensions } from 'react-native';
 
 const MovieDetailsScreen = ({ route }) => {
   const { movie } = route.params;
+  const screenWidth = Dimensions.get('window').width;
 
   return (
     <ScrollView style={styles.container}>
       <View style={styles.card}>
-        <Image source={{ uri: movie.Poster }} style={styles.poster} />
-
+        <Image 
+          source={{ uri: movie.Poster }} 
+          style={[styles.poster, { width: screenWidth - 32 }]}
+        />
         <View style={styles.infoContainer}>
           <Text style={styles.title}>{movie.Title}</Text>
           <Text style={styles.subtitle}>
             {movie.Genre} • {movie.Year}
           </Text>
           <Text style={styles.rating}>⭐ {movie.imdbRating} / 10</Text>
-
-          <View style={styles.separator} />
-
+          
+          <View style={styles.separator}></View>
+          
           <Text style={styles.label}>🎬 Plot</Text>
           <Text style={styles.description}>{movie.Plot || 'No plot available.'}</Text>
 
@@ -32,25 +35,22 @@ const MovieDetailsScreen = ({ route }) => {
   );
 };
 
-const screenWidth = Dimensions.get('window').width;
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#ECEFF1',
+    backgroundColor: '#F5F5F5',
   },
   card: {
-    backgroundColor: '#ffffff',
     margin: 16,
     borderRadius: 16,
     overflow: 'hidden',
+    backgroundColor: '#FFF',
     shadowColor: '#000',
-    shadowOpacity: 0.15,
-    shadowRadius: 12,
-    elevation: 8,
+    shadowOpacity: 0.1,
+    shadowRadius: 8,
+    elevation: 4,
   },
   poster: {
-    width: screenWidth - 32,
     height: 460,
     resizeMode: 'cover',
     borderTopLeftRadius: 16,
@@ -60,39 +60,41 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   title: {
-    fontSize: 26,
-    fontWeight: '700',
-    color: '#263238',
+    fontSize: 22,
+    fontWeight: 'bold',
+    color: '#333',
     marginBottom: 4,
   },
   subtitle: {
     fontSize: 16,
-    color: '#546E7A',
+    color: '#666',
     marginBottom: 8,
   },
   rating: {
     fontSize: 18,
     fontWeight: '600',
-    color: '#FF9800',
+    color: '#F59E0B',
     marginBottom: 12,
   },
   separator: {
     height: 1,
-    backgroundColor: '#CFD8DC',
+    backgroundColor: '#EEE',
     marginVertical: 12,
   },
   label: {
     fontSize: 16,
     fontWeight: 'bold',
-    color: '#37474F',
-    marginTop: 10,
+    color: '#444',
+    marginTop: 8,
     marginBottom: 4,
   },
   description: {
     fontSize: 14,
-    color: '#607D8B',
+    color: '#666',
     lineHeight: 20,
+    marginBottom: 16,
   },
 });
+
 
 export default MovieDetailsScreen;

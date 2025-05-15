@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, ActivityIndicator, Text } from 'react-native';
+import { View, StyleSheet, ActivityIndicator, StatusBar, SafeAreaView } from 'react-native';
+import { Text, Divider, Surface } from 'react-native-paper';
 import axios from 'axios';
 import SearchBar from '../components/SearchBar';
 import MovieList from '../components/MovieList';
@@ -33,9 +34,12 @@ const HomeScreen = ({ navigation }) => {
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.header}>🎬 Movie Finder</Text>
-      <SearchBar searchQuery={searchQuery} setSearchQuery={handleSearch} />
+    <SafeAreaView style={styles.safeArea}>
+      <StatusBar backgroundColor="#6200ee" />
+      <Surface style={styles.container}>
+        <Text style={styles.header}>🎬 Movie Search</Text>
+        <Divider style={styles.divider} />
+        <SearchBar searchQuery={searchQuery} setSearchQuery={handleSearch} />
       {loading ? (
         <View style={styles.loaderContainer}>
           <ActivityIndicator size="large" color="#6200ee" />
@@ -46,15 +50,23 @@ const HomeScreen = ({ navigation }) => {
           onSelectMovie={(movie) => navigation.navigate('MovieDetails', { movie })}
         />
       )}
-    </View>
+      </Surface>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+    backgroundColor: '#6200ee',
+  },
   container: {
     flex: 1,
-    backgroundColor: '#f3f4f6',
+    backgroundColor: '#f4f4f8',
     padding: 16,
+    elevation: 2,
+    borderRadius: 8,
+    margin: 8,
   },
   loaderContainer: {
     flex: 1,
@@ -62,11 +74,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   header: {
-    fontSize: 26,
+    fontSize: 28,
     fontWeight: 'bold',
     color: '#333',
-    marginBottom: 10,
+    marginBottom: 8,
     textAlign: 'center',
+  },
+  divider: {
+    marginBottom: 16,
+    backgroundColor: '#6200ee',
+    height: 2,
   },
 });
 
