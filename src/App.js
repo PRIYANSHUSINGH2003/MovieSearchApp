@@ -2,13 +2,10 @@ import React from 'react';
 import { Provider as PaperProvider, DefaultTheme } from 'react-native-paper';
 import { NavigationContainer, DefaultTheme as NavigationDefaultTheme } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { MaterialIcons } from '@expo/vector-icons';
 import HomeScreen from './screens/HomeScreen';
 import MovieDetailsScreen from './screens/MovieDetailsScreen';
 
 const Stack = createStackNavigator();
-const Tab = createBottomTabNavigator();
 
 // Define a custom Paper theme for consistent styling
 const paperTheme = {
@@ -38,34 +35,6 @@ const navTheme = {
   },
 };
 
-// Bottom tab navigator configuration
-function HomeTabs() {
-  return (
-    <Tab.Navigator
-      screenOptions={({ route }) => ({
-        tabBarIcon: ({ color, size }) => {
-          let iconName;
-          if (route.name === 'Movies') {
-            iconName = 'movie';
-          } else if (route.name === 'Favorites') {
-            iconName = 'favorite';
-          }
-          return <MaterialIcons name={iconName} size={size} color={color} />;
-        },
-        tabBarActiveTintColor: paperTheme.colors.primary,
-        tabBarInactiveTintColor: 'gray',
-        tabBarStyle: {
-          backgroundColor: '#f6f6f6',
-        },
-        headerShown: false,
-      })}
-    >
-      <Tab.Screen name="Movies" component={HomeScreen} />
-      <Tab.Screen name="Favorites" component={HomeScreen} />
-    </Tab.Navigator>
-  );
-}
-
 export default function App() {
   return (
     <PaperProvider theme={paperTheme}>
@@ -87,7 +56,7 @@ export default function App() {
         >
           <Stack.Screen
             name="Home"
-            component={HomeTabs}
+            component={HomeScreen}
             options={{ title: '🎬 Movie Search' }}
           />
           <Stack.Screen
